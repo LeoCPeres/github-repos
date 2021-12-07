@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+strong,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 700;
+}
+
+h1 {
+  color: #3a3a3a;
+  font-size: 48px;
+}
+
+h2 {
+  color: #3d3d4d;
+  font-size: 36px;
+}
+
+h3 {
+  color: #3d3d4d;
+  font-size: 24px;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  border: none;
+}
+
+body {
+  background-color: #f2f2fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
