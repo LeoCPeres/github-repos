@@ -4,6 +4,7 @@ import "./GlobalStyles.css";
 import "./Home.css";
 import { api } from "./services/api";
 import toast, { Toaster } from "react-hot-toast";
+import { Header } from "./components/Header";
 
 interface SearchResultProps {
   total_count: number;
@@ -124,7 +125,7 @@ function App() {
 
   useEffect(() => {
     api
-      .get(`search/repositories?q=facebook`)
+      .get(`search/repositories?q=${searchInput}`)
       .then((response) => setSearchResult(response.data));
   }, [searchInput]);
 
@@ -138,15 +139,14 @@ function App() {
     }
   }
 
-  console.log(searchResult);
+  console.log(searchResult.items);
+
   return (
     <div className="container">
       <Toaster />
       <img src="../images/github.svg" alt="" className="img-github" />
       <header>
-        <img src="./images/logo-completa.png" alt="" />
-        <h1 className="title">Explore repositórios no Github.</h1>
-
+        <Header />
         <form className="search">
           <input
             type="text"
@@ -154,6 +154,7 @@ function App() {
             id=""
             placeholder="Digite aqui"
             ref={inputRef}
+            spellCheck={false}
           />
           <button type="submit" onClick={handleSearch}>
             Pesquisar
@@ -161,9 +162,11 @@ function App() {
         </form>
       </header>
       <main>
-        {searchResult.items.map((item) => {
-          return <p>{item.name}</p>;
-        })}
+        {searchResult.items == undefined
+          ? ""
+          : searchResult.items.map((item) => {
+              return <Card repository={item} key={item.id}></Card>;
+            })}
       </main>
     </div>
   );
