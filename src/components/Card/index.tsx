@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 interface CardProps {
   repository: {
@@ -108,8 +109,15 @@ interface CardProps {
 }
 
 export function Card(props: CardProps) {
+  const navigate = useNavigate();
+  function handleNavigateToRepo(full_name: string) {
+    navigate(`/${full_name}`);
+  }
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={() => handleNavigateToRepo(props.repository.full_name)}
+    >
       <img
         src={props.repository.owner.avatar_url}
         alt=""

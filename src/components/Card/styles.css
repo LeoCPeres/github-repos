@@ -4,6 +4,12 @@
   background-color: white;
   padding: 14.1px;
   border-radius: 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0px 17px 24px -8px rgba(0, 0, 0, 0.2);
 }
 
 .user-icon {
