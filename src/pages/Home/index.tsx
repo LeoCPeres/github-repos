@@ -2,6 +2,9 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { Card } from "../../components/Card";
 import { api } from "../../services/api";
 
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 interface SearchResultProps {
   total_count: number;
   incomplete_results: boolean;
@@ -118,11 +121,18 @@ export function Home() {
     {} as SearchResultProps
   );
   const [searchInput, setSearchInput] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api
-      .get(`search/repositories?q=${searchInput}`)
-      .then((response) => setSearchResult(response.data));
+    const timer = setTimeout(() => {
+      api
+        .get(`search/repositories?q=${searchInput}`)
+        .then((response) => setSearchResult(response.data));
+
+      setLoading(false);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, [searchInput]);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -152,11 +162,17 @@ export function Home() {
         </button>
       </form>
       <main>
-        {searchResult.items == undefined
-          ? ""
-          : searchResult.items.map((item) => {
-              return <Card repository={item} key={item.id}></Card>;
-            })}
+        {searchResult.items ? (
+          searchResult.items.map((item) => {
+            return <Card repository={item} key={item.id}></Card>;
+          })
+        ) : searchInput != "" ? (
+          <SkeletonTheme baseColor="#fff">
+            <Skeleton width={800} height={112} />
+          </SkeletonTheme>
+        ) : (
+          ""
+        )}
       </main>
     </div>
   );

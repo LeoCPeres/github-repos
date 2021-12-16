@@ -121,30 +121,28 @@ export function Repository() {
     {} as SearchResultProps
   );
 
-  useEffect(() => {
-    async function fetchApi() {
-      const response = await api.get(`repos/${repoName}`);
-      setSearchResult(response.data);
-    }
+  const getRepo = async () => {
+    const repository = await api.get(`repos/${repoName}`);
+    setSearchResult(repository.data);
+  };
 
-    fetchApi();
+  useEffect(() => {
+    getRepo();
   }, []);
 
   console.log(searchResult);
 
   return (
     <div>
-      {/* {searchResult == undefined ? (
-        ""
-      ) : (
+      {searchResult.id && (
         <div className="repo">
           <img src={searchResult.owner.avatar_url} alt="" />
           <div className="repo-info">
-            <h2>{searchResult.name}</h2>
+            <h2>{searchResult.full_name}</h2>
             <span>{searchResult.description}</span>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 }
