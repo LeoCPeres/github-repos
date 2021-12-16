@@ -10,8 +10,8 @@ function App() {
     <div className="container">
       <img src="../images/github.svg" alt="" className="img-github" />
 
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/:owner_login/:name" element={<Repository />}></Route>

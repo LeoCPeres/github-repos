@@ -121,15 +121,12 @@ export function Home() {
     {} as SearchResultProps
   );
   const [searchInput, setSearchInput] = useState("");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       api
         .get(`search/repositories?q=${searchInput}`)
         .then((response) => setSearchResult(response.data));
-
-      setLoading(false);
     }, 0);
 
     return () => clearTimeout(timer);

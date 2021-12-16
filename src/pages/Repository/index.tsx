@@ -130,7 +130,7 @@ export function Repository() {
     getRepo();
   }, []);
 
-  console.log(searchResult);
+  console.log(params);
 
   return (
     <div>
