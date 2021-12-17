@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import "./styles.css";
@@ -130,18 +132,63 @@ export function Repository() {
     getRepo();
   }, []);
 
-  console.log(params);
-
   return (
     <div>
-      {searchResult.id && (
-        <div className="repo">
-          <img src={searchResult.owner.avatar_url} alt="" />
-          <div className="repo-info">
-            <h2>{searchResult.full_name}</h2>
-            <span>{searchResult.description}</span>
+      {searchResult.id ? (
+        <>
+          <div className="repo">
+            <img src={searchResult.owner.avatar_url} alt="" />
+            <div className="repo-info">
+              <h2>{searchResult.full_name}</h2>
+              <span>{searchResult.description}</span>
+            </div>
           </div>
-        </div>
+
+          <div className="repos-info">
+            <div className="infos">
+              <h2>{searchResult.stargazers_count}</h2>
+              <span>Stars</span>
+            </div>
+            <div className="infos">
+              <h2>{searchResult.forks_count}</h2>
+              <span>Forks</span>
+            </div>
+            <div className="infos">
+              <h2>{searchResult.open_issues_count}</h2>
+              <span>Issues abertas</span>
+            </div>
+          </div>
+        </>
+      ) : repoName !== "" ? (
+        <>
+          <div className="repo">
+            <SkeletonTheme>
+              <Skeleton />
+            </SkeletonTheme>
+            <img src={searchResult.owner.avatar_url} alt="" />
+            <div className="repo-info">
+              <h2>{searchResult.full_name}</h2>
+              <span>{searchResult.description}</span>
+            </div>
+          </div>
+
+          <div className="repos-info">
+            <div className="infos">
+              <h2>{searchResult.stargazers_count}</h2>
+              <span>Stars</span>
+            </div>
+            <div className="infos">
+              <h2>{searchResult.forks_count}</h2>
+              <span>Forks</span>
+            </div>
+            <div className="infos">
+              <h2>{searchResult.open_issues_count}</h2>
+              <span>Issues abertas</span>
+            </div>
+          </div>
+        </>
+      ) : (
+        ""
       )}
     </div>
   );

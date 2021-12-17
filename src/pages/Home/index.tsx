@@ -163,7 +163,7 @@ export function Home() {
           searchResult.items.map((item) => {
             return <Card repository={item} key={item.id}></Card>;
           })
-        ) : searchInput != "" ? (
+        ) : searchInput !== "" ? (
           <SkeletonTheme baseColor="#fff">
             <Skeleton width={800} height={112} />
           </SkeletonTheme>

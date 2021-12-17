@@ -1,11 +1,38 @@
 .repo {
   margin-top: 82px;
   display: flex;
-  gap: 13px;
+  gap: 32px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: unset;
 }
 
 .repo img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+}
+
+.repo span {
+  font-size: 20px;
+  color: #737380;
+}
+
+.repos-info {
+  display: flex;
+  margin-top: 40px;
+  gap: 80px;
+  align-items: center;
+}
+
+.repo-info {
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info span {
+  font-size: 20px;
+  font-weight: 400;
+  color: #6c6c80;
 }

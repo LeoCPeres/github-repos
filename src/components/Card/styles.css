@@ -41,3 +41,21 @@ span {
   font-weight: normal;
   text-overflow: ellipsis;
 }
+
+@media (max-width: 768px) {
+  .card-body {
+    width: 190px;
+  }
+
+  span {
+    font-size: 13px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  section {
+    margin-left: 10px;
+  }
+}

@@ -1,5 +1,6 @@
 .container {
   width: 800px;
+  height: 100vh;
 }
 
 .title {
@@ -48,4 +49,33 @@ main {
   opacity: 0.08;
   left: 880px;
   top: -15px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 300px;
+  }
+
+  .title {
+    width: 100%;
+    font-size: 30px;
+  }
+
+  .search {
+    max-width: 100%;
+  }
+
+  .img-github {
+    display: none;
+  }
+
+  input {
+    padding: 18.9px 20px;
+  }
+
+  button {
+    padding: 1px 10px;
+    width: 30%;
+    font-size: 12px;
+  }
 }
